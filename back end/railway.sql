@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 27/12/2020 23:11:24
+ Date: 28/12/2020 21:42:07
 */
 
 SET NAMES utf8mb4;
@@ -25,8 +25,10 @@ CREATE TABLE `baluster`  (
   `balusterId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '栏木机编号',
   `balusterName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '栏木机名称',
   `balusterStatus` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT '栏木机状态',
-  `crossingId` int(10) NOT NULL COMMENT '道口id',
-  PRIMARY KEY (`balusterId`) USING BTREE
+  `crossingId` int(10) UNSIGNED NOT NULL COMMENT '道口id',
+  PRIMARY KEY (`balusterId`) USING BTREE,
+  INDEX `crossingId`(`crossingId`) USING BTREE,
+  CONSTRAINT `baluster_ibfk_1` FOREIGN KEY (`crossingId`) REFERENCES `crossing` (`crossingId`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -76,21 +78,26 @@ INSERT INTO `crossing` VALUES (3, '石头油库', NULL, 0);
 DROP TABLE IF EXISTS `instruction`;
 CREATE TABLE `instruction`  (
   `InstructionId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '指令编号',
-  `userId` int(10) NOT NULL COMMENT '用户编号',
-  `crossingId` int(10) NOT NULL COMMENT '道口编号',
-  `locomotiveId` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '机车编号',
+  `userId` int(10) UNSIGNED NOT NULL COMMENT '用户编号',
+  `crossingId` int(10) UNSIGNED NOT NULL COMMENT '道口编号',
+  `locomotiveId` int(10) UNSIGNED DEFAULT NULL COMMENT '机车编号',
   `instructionContent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '指令内容',
   `instructionTime` datetime(0) DEFAULT NULL COMMENT '指令发布时间',
-  `passTime` int(11) DEFAULT NULL COMMENT '机车通过时间（秒）',
+  `passTime` int(10) DEFAULT NULL COMMENT '机车通过时间（秒）',
   `valid` tinyint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT '是否有效，0为无效，1为有效',
   PRIMARY KEY (`InstructionId`) USING BTREE,
-  INDEX `crossingId`(`crossingId`) USING BTREE
+  INDEX `crossingId`(`crossingId`) USING BTREE,
+  INDEX `userId`(`userId`) USING BTREE,
+  INDEX `locomotiveId`(`locomotiveId`) USING BTREE,
+  CONSTRAINT `instruction_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `instruction_ibfk_2` FOREIGN KEY (`crossingId`) REFERENCES `crossing` (`crossingId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `instruction_ibfk_3` FOREIGN KEY (`locomotiveId`) REFERENCES `locomotive` (`locomotiveId`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of instruction
 -- ----------------------------
-INSERT INTO `instruction` VALUES (1, 1, 1, '1', '允许通过', '2020-12-15 21:57:44', 10, 1);
+INSERT INTO `instruction` VALUES (1, 1, 1, 1, '允许通过', '2020-12-15 21:57:44', 10, 1);
 
 -- ----------------------------
 -- Table structure for locomotive
@@ -102,7 +109,7 @@ CREATE TABLE `locomotive`  (
   `locomotiveGPS` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '机车GPS位置',
   `nextCrossingId` int(10) UNSIGNED DEFAULT NULL COMMENT '前方道口',
   `trackId` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '股道编码',
-  `responseStatus` tinyint(1) UNSIGNED DEFAULT NULL COMMENT '机车应答状态(0为不通过，1为通过)',
+  `responseStatus` tinyint(1) UNSIGNED ZEROFILL NOT NULL COMMENT '机车应答状态(0为不通过，1为通过)',
   PRIMARY KEY (`locomotiveId`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
@@ -117,11 +124,12 @@ INSERT INTO `locomotive` VALUES (1, '东风0313', NULL, NULL, 'E3A', 0);
 DROP TABLE IF EXISTS `railwayblinker`;
 CREATE TABLE `railwayblinker`  (
   `railwayBlinkerId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '铁路同行信号灯编码',
-  `railwayBlinkerName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '铁路同行信号灯名称',
-  `railwayBlinkerStatus` tinyint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT '铁路同行信号灯状态',
-  `crossingId` int(10) DEFAULT NULL COMMENT '道口编号',
+  `railwayBlinkerName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '铁路同行信号灯名称',
+  `railwayBlinkerStatus` tinyint(2) UNSIGNED ZEROFILL NOT NULL COMMENT '铁路同行信号灯状态',
+  `crossingId` int(10) UNSIGNED NOT NULL COMMENT '道口编号',
   PRIMARY KEY (`railwayBlinkerId`) USING BTREE,
-  INDEX `crossingId`(`crossingId`) USING BTREE
+  INDEX `crossingId`(`crossingId`) USING BTREE,
+  CONSTRAINT `railwayblinker_ibfk_1` FOREIGN KEY (`crossingId`) REFERENCES `crossing` (`crossingId`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -142,9 +150,10 @@ CREATE TABLE `roadblinker`  (
   `roadBlinkerId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '公路信号灯编码',
   `roadBlinkerName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '公路信号灯名称',
   `roadBlinkerStatus` tinyint(2) UNSIGNED ZEROFILL DEFAULT NULL COMMENT '公路信号灯状态',
-  `crossingId` int(10) DEFAULT NULL COMMENT '道口编号',
+  `crossingId` int(10) UNSIGNED DEFAULT NULL COMMENT '道口编号',
   PRIMARY KEY (`roadBlinkerId`) USING BTREE,
-  INDEX `crossingId`(`crossingId`) USING BTREE
+  INDEX `crossingId`(`crossingId`) USING BTREE,
+  CONSTRAINT `roadblinker_ibfk_1` FOREIGN KEY (`crossingId`) REFERENCES `crossing` (`crossingId`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------

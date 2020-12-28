@@ -43,7 +43,7 @@ public class BalusterServiceImpl extends ServiceImpl<BalusterDao, Baluster> impl
         return new PageUtils(page);
     }
 
-    @Transactional
+    @Transactional(rollbackFor=UpdateException.class)
     @Override
     public JSONObject updateStatusByBalusterId(JSONObject message) throws UpdateException {
         Integer balusterId = message.getInteger("balusterId");
@@ -77,7 +77,7 @@ public class BalusterServiceImpl extends ServiceImpl<BalusterDao, Baluster> impl
         }
     }
 
-    @Transactional
+    @Transactional(rollbackFor=UpdateException.class)
     @Override
     public void updateStatusByCrossingMode(Integer crossingId, Boolean crossingMode) throws UpdateException {
         Boolean flag = crossingMode;
@@ -113,17 +113,17 @@ public class BalusterServiceImpl extends ServiceImpl<BalusterDao, Baluster> impl
     @Override
     public PageUtils queryPageByCondition(JSONObject message) {
         QueryWrapper<Baluster> wrapper = new QueryWrapper<>();
-        if (message.containsKey("balusterName") && StringUtils.isEmpty(message.getString("balusterName"))) {
+        if (message.containsKey("balusterName") && !StringUtils.isEmpty(message.getString("balusterName"))) {
             wrapper.and(w->{
                w.like("balusterName", message.getString("balusterName"));
             });
         }
-        if (message.containsKey("balusterStatus") && StringUtils.isEmpty(message.getInteger("balusterStatus"))) {
+        if (message.containsKey("balusterStatus") && !StringUtils.isEmpty(message.getInteger("balusterStatus"))) {
             wrapper.and(w->{
                 w.eq("balusterStatus", message.getInteger("balusterStatus"));
             });
         }
-        if (message.containsKey("crossingId") && StringUtils.isEmpty(message.getInteger("crossingId"))) {
+        if (message.containsKey("crossingId") && !StringUtils.isEmpty(message.getInteger("crossingId"))) {
             wrapper.and(w->{
                 w.eq("crossingId", message.getInteger("crossingId"));
             });

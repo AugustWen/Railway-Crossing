@@ -38,7 +38,7 @@ public class CrossingServiceImpl extends ServiceImpl<CrossingDao, Crossing> impl
         return new PageUtils(page);
     }
 
-    @Transactional
+    @Transactional(rollbackFor=UpdateException.class)
     @Override
     public JSONObject updateCrossingModeById(JSONObject message) throws UpdateException {
         Crossing crossing = new Crossing();

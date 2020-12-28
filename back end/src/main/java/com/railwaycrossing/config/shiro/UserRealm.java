@@ -1,7 +1,9 @@
 package com.railwaycrossing.config.shiro;
 
+import com.alibaba.fastjson.JSONObject;
 import com.railwaycrossing.dao.UserDao;
 import com.railwaycrossing.utils.JWTUtil;
+import jdk.nashorn.internal.scripts.JO;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -11,6 +13,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.context.annotation.Lazy;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
@@ -38,14 +41,16 @@ public class UserRealm extends AuthorizingRealm {
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-        //JSONObject role = userDao.getRoleByUserAccount(userAccount);
+        JSONObject role = new JSONObject();
+
+        role.put("roleName", "admin");
 
         Set<String> roleSet = new HashSet<String>();
 
         // 需要将 role 封装到 roleSet 作为 info.setRoles() 的参数
-        //roleSet.add((String) role.get("roleName"));
-        roleSet.add("admin");
-        //logger.info(role);
+        roleSet.add((String) role.get("roleName"));
+
+        logger.info(role);
 
 
         // 设置该用户拥有的角色

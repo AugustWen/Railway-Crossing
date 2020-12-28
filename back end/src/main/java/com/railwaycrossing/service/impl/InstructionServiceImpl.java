@@ -39,37 +39,37 @@ public class InstructionServiceImpl extends ServiceImpl<InstructionDao, Instruct
     public PageUtils queryPageByCondition(JSONObject message) {
         QueryWrapper<Instruction> wrapper = new QueryWrapper<>();
         //各种属性
-        if (message.containsKey("userId") && StringUtils.isEmpty(message.getInteger("userId"))) {
+        if (message.containsKey("userId") && !StringUtils.isEmpty(message.getInteger("userId"))) {
             wrapper.and(w->{
                 w.eq("userId", message.getInteger("userId"));
             });
         }
-        if (message.containsKey("crossingId") && StringUtils.isEmpty(message.getInteger("crossingId"))) {
+        if (message.containsKey("crossingId") && !StringUtils.isEmpty(message.getInteger("crossingId"))) {
             wrapper.and(w->{
                 w.eq("crossingId", message.getInteger("crossingId"));
             });
         }
-        if (message.containsKey("locomotiveId") && StringUtils.isEmpty(message.getInteger("locomotiveId"))) {
+        if (message.containsKey("locomotiveId") && !StringUtils.isEmpty(message.getInteger("locomotiveId"))) {
             wrapper.and(w->{
                 w.eq("locomotiveId", message.getInteger("locomotiveId"));
             });
         }
-        if (message.containsKey("instucrtionContent") && StringUtils.isEmpty(message.getString("instucrtionContent"))) {
+        if (message.containsKey("instucrtionContent") && !StringUtils.isEmpty(message.getString("instucrtionContent"))) {
             wrapper.and(w->{
                 w.like("instucrtionContent", message.getString("instucrtionContent"));
             });
         }
-        if (message.containsKey("instructionTime") && StringUtils.isEmpty(message.getDate("instructionTime"))) {
+        if (message.containsKey("instructionTime") && !StringUtils.isEmpty(message.getDate("instructionTime"))) {
             wrapper.and(w->{
                 w.eq("instructionTime", message.getDate("instructionTime"));
             });
         }
-        if (message.containsKey("passTime") && StringUtils.isEmpty(message.getInteger("passTime"))) {
+        if (message.containsKey("passTime") && !StringUtils.isEmpty(message.getInteger("passTime"))) {
             wrapper.and(w->{
                 w.eq("passTime", message.getInteger("passTime"));
             });
         }
-        if (message.containsKey("valid") && StringUtils.isEmpty(message.getBoolean("valid"))) {
+        if (message.containsKey("valid") && !StringUtils.isEmpty(message.getBoolean("valid"))) {
             wrapper.and(w->{
                 w.eq("valid", message.getBoolean("valid"));
             });
@@ -81,7 +81,7 @@ public class InstructionServiceImpl extends ServiceImpl<InstructionDao, Instruct
         return new PageUtils(page);
     }
 
-    @Transactional
+    @Transactional(rollbackFor=InsertException.class)
     @Override
     public JSONObject insert(JSONObject message) throws InsertException {
         Instruction instruction = new Instruction();

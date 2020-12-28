@@ -66,8 +66,10 @@ class RailwaycrossingApplicationTests {
     }
 
     @Test
-    void testLocomotive() {
-
+    void testBaluster2() {
+        JSONObject message = new JSONObject();
+        message.put("crossingId", 1);
+        balusterController.queryPageByCondition(message);
     }
 
 }

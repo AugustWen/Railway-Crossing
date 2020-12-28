@@ -177,7 +177,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     }
 
-    @Transactional
+    @Transactional(rollbackFor=UpdateException.class)
     @Override
     public JSONObject updateUser(JSONObject message) throws UpdateException {
 

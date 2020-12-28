@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.railwaycrossing.dao.BalusterDao">
+
+    <resultMap id="balusterMap" type="com.railwaycrossing.entity.Baluster">
+        <result property="balusterId" column="balusterId"/>
+        <result property="balusterName" column="balusterName"/>
+        <result property="balusterStatus" column="balusterStatus"/>
+        <result property="crossingId" column="crossingId"/>
+    </resultMap>
+
+    <update id="updateStatusByBalusterId" >
+        UPDATE baluster SET balusterStatus=#{balusterStatus} WHERE balusterId=#{balusterId}
+    </update>
+    <update id="updateStatusByCrossingId">
+        UPDATE baluster SET balusterStatus=#{balusterStatus} WHERE crossingId=#{crossingId}
+    </update>
+</mapper>

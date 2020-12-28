@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4a461cc9-8863-4174-925f-4a430744cb9b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\37508\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="E:\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1lBYLVYXOrMsE040lOve1OBfzUc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\railwaycrossing\src\main\resources\mapper" />
+      <recent name="E:\railwaycrossing\src\main\java\com\railwaycrossing" />
+      <recent name="E:\railwaycrossing\src\main\java\com\railwaycrossing\utils" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.railwaycrossing.controller" />
+      <recent name="com.railwaycrossing.dao" />
+      <recent name="com.railwaycrossing.service" />
+      <recent name="com.railwaycrossing.exception" />
+      <recent name="com.railwaycrossing.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.RailwaycrossingApplicationTests.testBaluster">
+    <configuration name="RailwaycrossingApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="railwaycrossing" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycrossing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.railwaycrossing" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycrossing.RailwaycrossingApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RailwaycrossingApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="railwaycrossing" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycrossing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.railwaycrossing" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycrossing.RailwaycrossingApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RailwaycrossingApplicationTests.testBaluster" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="railwaycrossing" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycrossing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.railwaycrossing" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycrossing.RailwaycrossingApplicationTests" />
+      <option name="METHOD_NAME" value="testBaluster" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RailwaycrossingApplicationTests.testInstruct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="railwaycrossing" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycrossing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.railwaycrossing" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycrossing.RailwaycrossingApplicationTests" />
+      <option name="METHOD_NAME" value="testInstruct" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RailwaycrossingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="railwaycrossing" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.railwaycrossing.RailwaycrossingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RailwaycrossingApplicationTests.testBaluster" />
+        <item itemvalue="JUnit.RailwaycrossingApplicationTests.testInstruct" />
+        <item itemvalue="JUnit.RailwaycrossingApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.RailwaycrossingApplicationTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4a461cc9-8863-4174-925f-4a430744cb9b" name="Default Changelist" comment="" />
+      <created>1607071895716</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607071895716</updated>
+      <workItem from="1607071897671" duration="3891000" />
+      <workItem from="1607244599479" duration="3181000" />
+      <workItem from="1607432923343" duration="136000" />
+      <workItem from="1607433120440" duration="5929000" />
+      <workItem from="1607504326509" duration="10002000" />
+      <workItem from="1607568388863" duration="499000" />
+      <workItem from="1607596184309" duration="1395000" />
+      <workItem from="1607693828278" duration="21423000" />
+      <workItem from="1607850085380" duration="2718000" />
+      <workItem from="1607860099344" duration="418000" />
+      <workItem from="1607930066730" duration="1860000" />
+      <workItem from="1608010086086" duration="12319000" />
+      <workItem from="1608092972779" duration="10944000" />
+      <workItem from="1608780696348" duration="3222000" />
+      <workItem from="1608786519298" duration="104000" />
+      <workItem from="1608960424737" duration="5152000" />
+      <workItem from="1608975661162" duration="8483000" />
+      <workItem from="1609078879747" duration="2379000" />
+      <workItem from="1609117328355" duration="2622000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/railwaycrossing/filter/JWTFilter.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/railwaycrossing/config/shiro/UserRealm.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/railwaycrossing/config/shiro/UserRealm.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/railwaycrossing/filter/JWTFilter.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/railwaycrossing/filter/JWTFilter.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.apache.catalina.connector.ResponseFacade" memberName="response" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>

@@ -43,13 +43,13 @@ public class InstructionController {
     }
 
     @PostMapping("/delete")
-    public JSONObject delete(@RequestBody Integer instructionId) throws DeleteException {
-        return instructionService.delete(instructionId);
+    public JSONObject delete(@RequestBody JSONObject message) throws DeleteException {
+        return instructionService.delete(message);
     }
 
     @PostMapping("/deleteBatch")
-    public JSONObject deleteBatch(@RequestBody List<Integer> instructionIds) throws DeleteException {
-        return instructionService.deleteBatch(instructionIds);
+    public JSONObject deleteBatch(@RequestBody JSONObject message) throws DeleteException {
+        return instructionService.deleteBatch(message);
     }
 
     @PostMapping("/updateById")

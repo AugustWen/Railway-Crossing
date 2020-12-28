@@ -1,5 +1,6 @@
 package com.railwaycrossing.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -41,7 +42,8 @@ public class LocomotiveServiceImpl extends ServiceImpl<LocomotiveDao, Locomotive
     }
 
     @Override
-    public JSONObject delete(Integer locomotiveId) throws DeleteException {
+    public JSONObject delete(JSONObject message) throws DeleteException {
+        Integer locomotiveId = message.getInteger("locomotiveId");
         int result = baseMapper.deleteById(locomotiveId);
 
         if (result != 1) {
@@ -52,7 +54,10 @@ public class LocomotiveServiceImpl extends ServiceImpl<LocomotiveDao, Locomotive
     }
 
     @Override
-    public JSONObject deleteBatch(List<Integer> locomotiveIds) throws DeleteException {
+    public JSONObject deleteBatch(JSONObject message) throws DeleteException {
+        JSONArray array = message.getJSONArray("locomotiveId");
+        List<Integer> locomotiveIds = JSONObject.parseArray(array.toJSONString(), Integer.class);
+
         int result = baseMapper.deleteBatchIds(locomotiveIds);
 
         if (result != locomotiveIds.size()) {

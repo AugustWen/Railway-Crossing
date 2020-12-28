@@ -19,9 +19,9 @@ public interface InstructionService extends IService<Instruction> {
 
     JSONObject insert(JSONObject message) throws InsertException;
 
-    JSONObject delete(Integer instructionId) throws DeleteException;
+    JSONObject delete(JSONObject message) throws DeleteException;
 
-    JSONObject deleteBatch(List<Integer> instructionIds) throws DeleteException;
+    JSONObject deleteBatch(JSONObject message) throws DeleteException;
 
     JSONObject updateById(JSONObject message) throws UpdateException;
 

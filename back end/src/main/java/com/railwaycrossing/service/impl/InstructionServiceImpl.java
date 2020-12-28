@@ -1,5 +1,6 @@
 package com.railwaycrossing.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -102,7 +103,8 @@ public class InstructionServiceImpl extends ServiceImpl<InstructionDao, Instruct
     }
 
     @Override
-    public JSONObject delete(Integer instructionId) throws DeleteException {
+    public JSONObject delete(JSONObject message) throws DeleteException {
+        Integer instructionId = message.getInteger("instructionId");
         int result = baseMapper.deleteById(instructionId);
         if (result != 1) {
             return JSONUtil.successJSON(Constants.DELETE_SUCCESS);
@@ -112,7 +114,9 @@ public class InstructionServiceImpl extends ServiceImpl<InstructionDao, Instruct
     }
 
     @Override
-    public JSONObject deleteBatch(List<Integer> instructionId) throws DeleteException {
+    public JSONObject deleteBatch(JSONObject message) throws DeleteException {
+        JSONArray array = message.getJSONArray("instructionId");
+        List<Integer> instructionId = JSONObject.parseArray(array.toJSONString(), Integer.class);
         int result = baseMapper.deleteBatchIds(instructionId);
         if (result == instructionId.size()) {
             return JSONUtil.successJSON(Constants.DELETE_SUCCESS);

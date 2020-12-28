@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface LocomotiveService extends IService<Locomotive> {
     JSONObject insert(JSONObject message) throws InsertException;
-    JSONObject delete(Integer locomotiveId) throws DeleteException;
-    JSONObject deleteBatch(List<Integer> locomotiveIds) throws DeleteException;
+    JSONObject delete(JSONObject message) throws DeleteException;
+    JSONObject deleteBatch(JSONObject message) throws DeleteException;
     JSONObject updateById(JSONObject message) throws UpdateException;
     PageUtils queryPage(JSONObject message);
     PageUtils queryPageByCondition(JSONObject message);

@@ -7,10 +7,7 @@ import com.railwaycrossing.service.WarningService;
 import com.railwaycrossing.utils.JSONUtil;
 import com.railwaycrossing.utils.PageUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -26,24 +23,24 @@ public class WarningController {
     WarningService warningService;
 
     @PostMapping("/listAll")
-    JSONObject listAll(JSONObject message) {
+    JSONObject listAll(@RequestBody JSONObject message) {
         PageUtils pageUtils = warningService.queryPage(message);
         return JSONUtil.successJSON(pageUtils);
     }
 
     @PostMapping("/listByCondition")
-    public JSONObject listByCondition(JSONObject message) {
+    public JSONObject listByCondition(@RequestBody JSONObject message) {
         PageUtils pageUtils = warningService.queryPageByCondition(message);
         return JSONUtil.successJSON(pageUtils);
     }
 
     @PostMapping("/deleteById")
-    public JSONObject deleteById(JSONObject message) throws DeleteException {
+    public JSONObject deleteById(@RequestBody JSONObject message) throws DeleteException {
         return warningService.deleteById(message);
     }
 
     @PostMapping("/insert")
-    public JSONObject insert(JSONObject message) throws InsertException {
+    public JSONObject insert(@RequestBody JSONObject message) throws InsertException {
         return warningService.insert(message);
     }
 }

@@ -6,10 +6,7 @@ import com.railwaycrossing.service.CrossingService;
 import com.railwaycrossing.utils.JSONUtil;
 import com.railwaycrossing.utils.PageUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -26,13 +23,13 @@ public class CrossingController {
     CrossingService crossingService;
 
     @PostMapping("/listAll")
-    public JSONObject listAll(JSONObject message) {
+    public JSONObject listAll(@RequestBody JSONObject message) {
         PageUtils pageUtils = crossingService.queryPage(message);
         return JSONUtil.successJSON(pageUtils);
     }
 
     @PostMapping("/updateStatus")
-    public JSONObject updateStatus(JSONObject message) throws UpdateException {
+    public JSONObject updateStatus(@RequestBody JSONObject message) throws UpdateException {
         return crossingService.updateCrossingModeById(message);
     }
 }

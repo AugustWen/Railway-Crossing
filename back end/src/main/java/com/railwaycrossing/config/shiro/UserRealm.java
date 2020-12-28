@@ -37,27 +37,14 @@ public class UserRealm extends AuthorizingRealm {
 
 //        System.out.println("------------- Permission Verify ------------");
 
-        String userAccount = JWTUtil.getUserAccount(principal.toString());
-
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-        JSONObject role = new JSONObject();
-
-        role.put("roleName", "admin");
-
-        Set<String> roleSet = new HashSet<String>();
-
-        // 需要将 role 封装到 roleSet 作为 info.setRoles() 的参数
-        roleSet.add((String) role.get("roleName"));
-
-        logger.info(role);
-
-
-        // 设置该用户拥有的角色
-        info.setRoles(roleSet);
-
+        info.addRole("admin");
+        info.addStringPermission("query");
+        info.addStringPermission("delete");
+        info.addStringPermission("update");
+        info.addStringPermission("insert");
         return info;
-
     }
 
 

@@ -26,19 +26,19 @@ public class InstructionController {
     InstructionService instructionService;
 
     @PostMapping("/listAll")
-    public JSONObject listAll(JSONObject message) {
+    public JSONObject listAll(@RequestBody JSONObject message) {
         PageUtils pageUtils = instructionService.queryPage(message);
         return JSONUtil.successJSON(message);
     }
 
     @PostMapping("/listByCondition")
-    public JSONObject listByCondition(JSONObject message) {
+    public JSONObject listByCondition(@RequestBody JSONObject message) {
         PageUtils pageUtils = instructionService.queryPageByCondition(message);
         return JSONUtil.successJSON(pageUtils);
     }
 
     @PostMapping("/insert")
-    public JSONObject insert(JSONObject message) throws InsertException {
+    public JSONObject insert(@RequestBody JSONObject message) throws InsertException {
         return instructionService.insert(message);
     }
 
@@ -53,7 +53,7 @@ public class InstructionController {
     }
 
     @PostMapping("/updateById")
-    public JSONObject updateById(JSONObject message) throws UpdateException {
+    public JSONObject updateById(@RequestBody JSONObject message) throws UpdateException {
         return instructionService.updateById(message);
     }
 }

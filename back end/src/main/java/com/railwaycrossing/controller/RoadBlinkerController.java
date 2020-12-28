@@ -6,10 +6,7 @@ import com.railwaycrossing.service.RoadBlinkerService;
 import com.railwaycrossing.utils.JSONUtil;
 import com.railwaycrossing.utils.PageUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -26,13 +23,13 @@ public class RoadBlinkerController {
     RoadBlinkerService roadBlinkerService;
 
     @PostMapping("/listAll")
-    public JSONObject listAll(JSONObject message) {
+    public JSONObject listAll(@RequestBody JSONObject message) {
         PageUtils pageUtils = roadBlinkerService.queryPage(message);
         return JSONUtil.successJSON(pageUtils);
     }
 
     @PostMapping("/listByCondition")
-    public JSONObject listByCondition(JSONObject message) {
+    public JSONObject listByCondition(@RequestBody JSONObject message) {
         PageUtils pageUtils = roadBlinkerService.queryPageByCondition(message);
         return JSONUtil.successJSON(pageUtils);
     }

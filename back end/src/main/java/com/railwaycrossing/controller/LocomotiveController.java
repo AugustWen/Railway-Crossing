@@ -26,19 +26,19 @@ public class LocomotiveController {
     LocomotiveService locomotiveService;
 
     @PostMapping("/listAll")
-    public JSONObject listAll(JSONObject message) {
+    public JSONObject listAll(@RequestBody JSONObject message) {
         PageUtils pageUtils = locomotiveService.queryPage(message);
         return JSONUtil.successJSON(pageUtils);
     }
 
     @PostMapping("/listByCondition")
-    public JSONObject listByCondition(JSONObject message) {
+    public JSONObject listByCondition(@RequestBody JSONObject message) {
         PageUtils pageUtils = locomotiveService.queryPageByCondition(message);
         return JSONUtil.successJSON(pageUtils);
     }
 
     @PostMapping("/insert")
-    public JSONObject insert(JSONObject message) throws InsertException {
+    public JSONObject insert(@RequestBody JSONObject message) throws InsertException {
         return locomotiveService.insert(message);
     }
 
@@ -53,7 +53,7 @@ public class LocomotiveController {
     }
 
     @PostMapping("/updateById")
-    public JSONObject updateById(JSONObject message) throws UpdateException {
+    public JSONObject updateById(@RequestBody JSONObject message) throws UpdateException {
         return locomotiveService.updateById(message);
     }
 }

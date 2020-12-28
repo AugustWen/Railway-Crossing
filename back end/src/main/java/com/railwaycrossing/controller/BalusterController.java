@@ -29,7 +29,7 @@ public class BalusterController {
      * @return
      */
     @PostMapping("/listAll")
-    public JSONObject listAll(JSONObject message) {
+    public JSONObject listAll(@RequestBody JSONObject message) {
         PageUtils pageUtils = balusterService.queryPage(message);
         return JSONUtil.successJSON(pageUtils);
     }
@@ -41,7 +41,7 @@ public class BalusterController {
      * @throws UpdateException
      */
     @PostMapping("/updateStatusByBalusterId")
-    public JSONObject updateStatusByBalusterId(JSONObject message) throws UpdateException {
+    public JSONObject updateStatusByBalusterId(@RequestBody JSONObject message) throws UpdateException {
         return balusterService.updateStatusByBalusterId(message);
     }
 
@@ -52,7 +52,7 @@ public class BalusterController {
      * @throws UpdateException
      */
     @PostMapping("/updateStatusByCrossingId")
-    public JSONObject updateStatusByCrossingId(JSONObject message) throws UpdateException {
+    public JSONObject updateStatusByCrossingId(@RequestBody JSONObject message) throws UpdateException {
         return balusterService.updateStatusByCrossingId(message);
     }
 
@@ -62,7 +62,7 @@ public class BalusterController {
      * @return
      */
     @PostMapping("/queryPageByCondition")
-    public JSONObject queryPageByCondition(JSONObject message) {
+    public JSONObject queryPageByCondition(@RequestBody JSONObject message) {
         PageUtils pageUtils = balusterService.queryPageByCondition(message);
         return JSONUtil.successJSON(pageUtils);
     }

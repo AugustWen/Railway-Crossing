@@ -14,12 +14,9 @@ import com.railwaycrossing.service.LocomotiveService;
 import com.railwaycrossing.utils.JSONUtil;
 import com.railwaycrossing.utils.PageUtils;
 import com.railwaycrossing.utils.Query;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service("locomotiveService")

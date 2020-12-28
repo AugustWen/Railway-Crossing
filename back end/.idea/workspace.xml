@@ -19,7 +19,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -72,6 +72,17 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.RailwaycrossingApplicationTests.testBaluster">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RailwaycrossingApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="railwaycrossing" />
       <extension name="coverage">
@@ -177,7 +188,7 @@
       <workItem from="1608960424737" duration="5152000" />
       <workItem from="1608975661162" duration="8483000" />
       <workItem from="1609078879747" duration="2379000" />
-      <workItem from="1609117328355" duration="2622000" />
+      <workItem from="1609117328355" duration="3087000" />
     </task>
     <servers />
   </component>

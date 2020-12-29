@@ -43,13 +43,13 @@ public class LocomotiveController {
     }
 
     @PostMapping("/delete")
-    public JSONObject delete(@RequestBody Integer locomotiveId) throws DeleteException {
-        return locomotiveService.delete(locomotiveId);
+    public JSONObject delete(@RequestBody JSONObject message) throws DeleteException {
+        return locomotiveService.delete(message);
     }
 
     @PostMapping("/deleteBatch")
-    public JSONObject deleteBatch(@RequestBody List<Integer> locomotiveIds) throws DeleteException {
-        return locomotiveService.deleteBatch(locomotiveIds);
+    public JSONObject deleteBatch(@RequestBody JSONObject message) throws DeleteException {
+        return locomotiveService.deleteBatch(message);
     }
 
     @PostMapping("/updateById")

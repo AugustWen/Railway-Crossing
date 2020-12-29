@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.railwaycrossing.entity.Warning;
 import com.railwaycrossing.exception.DeleteException;
 import com.railwaycrossing.exception.InsertException;
+import com.railwaycrossing.exception.UpdateException;
 import com.railwaycrossing.utils.PageUtils;
 
 public interface WarningService extends IService<Warning> {
@@ -12,4 +13,8 @@ public interface WarningService extends IService<Warning> {
     PageUtils queryPageByCondition(JSONObject message);
     JSONObject deleteById(JSONObject message) throws DeleteException;
     JSONObject insert(JSONObject message) throws InsertException;
+
+    JSONObject updateByWarningId(JSONObject message) throws UpdateException;
+
+    JSONObject updateByCrossingId(JSONObject message) throws UpdateException;
 }

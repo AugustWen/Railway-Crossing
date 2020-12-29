@@ -13,6 +13,7 @@ import com.railwaycrossing.exception.DeleteException;
 import com.railwaycrossing.exception.InsertException;
 import com.railwaycrossing.exception.UpdateException;
 import com.railwaycrossing.service.InstructionService;
+import com.railwaycrossing.utils.DateUtils;
 import com.railwaycrossing.utils.JSONUtil;
 import com.railwaycrossing.utils.PageUtils;
 import com.railwaycrossing.utils.Query;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service("instructionService")
@@ -87,11 +89,11 @@ public class InstructionServiceImpl extends ServiceImpl<InstructionDao, Instruct
     public JSONObject insert(JSONObject message) throws InsertException {
         Instruction instruction = new Instruction();
         //各种属性
-        instruction.setCrossingId(message.getInteger("userId"));
+        instruction.setUserId(message.getInteger("userId"));
         instruction.setCrossingId(message.getInteger("crossingId"));
         instruction.setLocomotiveId(message.getString("locomotiveId"));
-        instruction.setInstructionContent(message.getString("instruction"));
-        instruction.setInstructionTime(message.getDate("instructionTime"));
+        instruction.setInstructionContent(message.getString("instructionContent"));
+        instruction.setInstructionTime(new Date());
         instruction.setPassTime(message.getInteger("passTime"));
         instruction.setValid(message.getBoolean("valid"));
         int result = baseMapper.insert(instruction);
@@ -105,7 +107,7 @@ public class InstructionServiceImpl extends ServiceImpl<InstructionDao, Instruct
     @Override
     public JSONObject delete(JSONObject message) throws DeleteException {
         Integer instructionId = message.getInteger("instructionId");
-        int result = baseMapper.deleteById(instructionId);
+        int result = baseMapper.delete(new UpdateWrapper<Instruction>().eq("instructionId",instructionId));
         if (result != 1) {
             return JSONUtil.successJSON(Constants.DELETE_SUCCESS);
         } else {

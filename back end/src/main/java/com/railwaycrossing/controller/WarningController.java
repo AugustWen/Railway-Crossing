@@ -3,6 +3,7 @@ package com.railwaycrossing.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.railwaycrossing.exception.DeleteException;
 import com.railwaycrossing.exception.InsertException;
+import com.railwaycrossing.exception.UpdateException;
 import com.railwaycrossing.service.WarningService;
 import com.railwaycrossing.utils.JSONUtil;
 import com.railwaycrossing.utils.PageUtils;
@@ -42,5 +43,15 @@ public class WarningController {
     @PostMapping("/insert")
     public JSONObject insert(@RequestBody JSONObject message) throws InsertException {
         return warningService.insert(message);
+    }
+
+    @PostMapping("/updateValidByWarningId")
+    public JSONObject updateByWarningId(@RequestBody JSONObject message) throws InsertException, UpdateException {
+        return warningService.updateByWarningId(message);
+    }
+
+    @PostMapping("/updateValidByCrossingId")
+    public JSONObject updateByCrossingId(@RequestBody JSONObject message) throws InsertException, UpdateException {
+        return warningService.updateByCrossingId(message);
     }
 }

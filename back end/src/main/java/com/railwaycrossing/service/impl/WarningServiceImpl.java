@@ -2,6 +2,7 @@ package com.railwaycrossing.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.railwaycrossing.constants.Constants;
@@ -9,6 +10,7 @@ import com.railwaycrossing.dao.WarningDao;
 import com.railwaycrossing.entity.Warning;
 import com.railwaycrossing.exception.DeleteException;
 import com.railwaycrossing.exception.InsertException;
+import com.railwaycrossing.exception.UpdateException;
 import com.railwaycrossing.service.WarningService;
 import com.railwaycrossing.utils.JSONUtil;
 import com.railwaycrossing.utils.PageUtils;
@@ -59,12 +61,40 @@ public class WarningServiceImpl extends ServiceImpl<WarningDao, Warning> impleme
     public JSONObject insert(JSONObject message) throws InsertException {
         Warning warning = new Warning();
         warning.setWarningContent(message.getString("warningContent"));
-        warning.setCrossingId(message.getInteger("crossingId"));
+        Integer crossingId = message.getInteger("crossingId");
+        if (crossingId < 0 || crossingId > 3) throw new InsertException();
+        warning.setCrossingId(crossingId);
         int result = baseMapper.insert(warning);
         if (result == 1) {
             return JSONUtil.successJSON(Constants.INSERT_SUCCESS);
         } else {
             throw new InsertException();
+        }
+    }
+
+    @Override
+    public JSONObject updateByWarningId(JSONObject message) throws UpdateException {
+        Warning warning = new Warning();
+        Integer warningId = message.getInteger("warningId");
+        warning.setValid(message.getBoolean("valid"));
+        int result = baseMapper.update(warning, new UpdateWrapper<Warning>().eq("warningId", warningId));
+        if (result == 1) {
+            return JSONUtil.successJSON(Constants.UPDATE_SUCCESS);
+        } else {
+            throw new UpdateException();
+        }
+    }
+
+    @Override
+    public JSONObject updateByCrossingId(JSONObject message) throws UpdateException {
+        Warning warning = new Warning();
+        Integer crossingId = message.getInteger("crossingId");
+        warning.setValid(message.getBoolean("valid"));
+        int result = baseMapper.update(warning, new UpdateWrapper<Warning>().eq("crossingId", crossingId));
+        if (result == 1) {
+            return JSONUtil.successJSON(Constants.UPDATE_SUCCESS);
+        } else {
+            throw new UpdateException();
         }
     }
 }

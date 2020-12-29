@@ -29,7 +29,6 @@ public class LocomotiveServiceImpl extends ServiceImpl<LocomotiveDao, Locomotive
         //各种属性
         locomotive.setLocomotiveName(message.getString("locomotiveId"));
         locomotive.setLocomotiveGPS(message.getString("locomotiveGPS"));
-        locomotive.setNextCrossingId(message.getInteger("nextCrossingId"));
         locomotive.setTrackId(message.getString("trackId"));
         locomotive.setResponseStatus(message.getBoolean("responseStatus"));
         int result = baseMapper.insert(locomotive);
@@ -74,7 +73,6 @@ public class LocomotiveServiceImpl extends ServiceImpl<LocomotiveDao, Locomotive
         locomotive.setLocomotiveId(message.getInteger("locomotiveId"));
         locomotive.setLocomotiveName(message.getString("locomotiveId"));
         locomotive.setLocomotiveGPS(message.getString("locomotiveGPS"));
-        locomotive.setNextCrossingId(message.getInteger("nextCrossingId"));
         locomotive.setTrackId(message.getString("trackId"));
         locomotive.setResponseStatus(message.getBoolean("responseStatus"));
         int result = baseMapper.update(locomotive, new UpdateWrapper<Locomotive>().eq("locomotiveId",locomotive.getLocomotiveId()));
@@ -101,7 +99,6 @@ public class LocomotiveServiceImpl extends ServiceImpl<LocomotiveDao, Locomotive
         //1.获取key
         String locomotiveName = message.getString("locomotiveName");
         Integer locomotiveId = message.getInteger("locomotiveId");
-        Integer nextCrossingId = message.getInteger("nextCrossingId");
         String trackId = message.getString("trackId");
         Boolean responseStatus = message.getBoolean("responseStatus");
         QueryWrapper<Locomotive> queryWrapper = new QueryWrapper<>();
@@ -110,9 +107,6 @@ public class LocomotiveServiceImpl extends ServiceImpl<LocomotiveDao, Locomotive
         }
         if (!StringUtils.isEmpty(locomotiveId)) {
             queryWrapper.or().eq("locomotiveId", locomotiveId);
-        }
-        if (!StringUtils.isEmpty(nextCrossingId)) {
-            queryWrapper.or().eq("nextCrossingId", nextCrossingId);
         }
         if (!StringUtils.isEmpty(trackId)) {
             queryWrapper.or().eq("trackId", trackId);

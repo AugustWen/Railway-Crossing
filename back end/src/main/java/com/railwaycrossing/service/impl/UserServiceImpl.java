@@ -68,8 +68,6 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
 
             msg = JSONUtil.successJSON();
-
-            updateLoginLength(message.getString("userAccount"));
         }
 
         return msg;
@@ -192,9 +190,6 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         if (message.containsKey("lastLoginTime")) {
             user.setLastLoginTime(message.getDate("lastLoginTime"));
         }
-        if (message.containsKey("lastLoginLength")) {
-            user.setLastLoginLength(message.getInteger("lastLoginLength"));
-        }
 
         int result = baseMapper.update(user, new QueryWrapper<User>().eq("userAccount", userAccount));
 
@@ -210,14 +205,6 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     public void updateLoginTime(String userAccount) {
         User user = new User();
         user.setLastLoginTime(new Date());
-        baseMapper.update(user, new UpdateWrapper<User>().eq("userAccount",userAccount));
-    }
-
-    @Override
-    public void updateLoginLength(String userAccount) {
-        User user = baseMapper.getUserByUserAccount(userAccount);
-        Date logoutTime = new Date();
-        user.setLastLoginLength((int)(logoutTime.getTime() - user.getLastLoginTime().getTime()) / 1000);
         baseMapper.update(user, new UpdateWrapper<User>().eq("userAccount",userAccount));
     }
 

@@ -23,6 +23,4 @@ public interface UserService extends IService<User> {
 
     void updateLoginTime(String userAccount);
 
-    void updateLoginLength(String userAccount);
-
 }

@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 29/12/2020 19:17:32
+ Date: 29/12/2020 23:07:00
 */
 
 SET NAMES utf8mb4;
@@ -109,7 +109,6 @@ CREATE TABLE `locomotive`  (
   `locomotiveId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '机车编号',
   `locomotiveName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '机车名称',
   `locomotiveGPS` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '机车GPS位置',
-  `nextCrossingId` int(10) UNSIGNED DEFAULT NULL COMMENT '前方道口',
   `trackId` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '股道编码',
   `responseStatus` tinyint(1) UNSIGNED ZEROFILL NOT NULL COMMENT '机车应答状态(0为不通过，1为通过)',
   PRIMARY KEY (`locomotiveId`) USING BTREE
@@ -118,7 +117,7 @@ CREATE TABLE `locomotive`  (
 -- ----------------------------
 -- Records of locomotive
 -- ----------------------------
-INSERT INTO `locomotive` VALUES (1, '东风0313', NULL, NULL, 'E3A', 0);
+INSERT INTO `locomotive` VALUES (1, '东风0313', NULL, 'E3A', 0);
 
 -- ----------------------------
 -- Table structure for railwayblinker
@@ -179,7 +178,6 @@ CREATE TABLE `user`  (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
   `salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '盐值',
   `lastLoginTime` datetime(0) DEFAULT NULL COMMENT '最后登录时间',
-  `lastLoginLength` int(20) UNSIGNED DEFAULT NULL COMMENT '最后登录时长（秒）',
   PRIMARY KEY (`userId`, `userAccount`) USING BTREE,
   INDEX `userId`(`userId`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -187,8 +185,8 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '271880', NULL, '6B2E362E4B344941937D461553C7A578', '39322103-CD73-4D50-8CEB-C3E6746931EF', NULL, NULL);
-INSERT INTO `user` VALUES (2, '271881', NULL, '9D4A0F970CBE0429DECAB7468D5ADEDA', '20D49FFE-EFC7-4C27-A5AF-69D02B0CD9D0', NULL, NULL);
+INSERT INTO `user` VALUES (1, '271880', NULL, '6B2E362E4B344941937D461553C7A578', '39322103-CD73-4D50-8CEB-C3E6746931EF', NULL);
+INSERT INTO `user` VALUES (2, '271881', NULL, '9D4A0F970CBE0429DECAB7468D5ADEDA', '20D49FFE-EFC7-4C27-A5AF-69D02B0CD9D0', '2020-12-29 20:45:53');
 
 -- ----------------------------
 -- Table structure for warning

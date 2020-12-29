@@ -19,5 +19,4 @@ public class User implements Serializable {
 
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date lastLoginTime;
-    private Integer lastLoginLength;
 }

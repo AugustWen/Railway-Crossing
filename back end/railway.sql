@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 28/12/2020 21:42:07
+ Date: 29/12/2020 19:17:32
 */
 
 SET NAMES utf8mb4;
@@ -68,7 +68,7 @@ CREATE TABLE `crossing`  (
 -- ----------------------------
 -- Records of crossing
 -- ----------------------------
-INSERT INTO `crossing` VALUES (1, '凌志西', NULL, 0);
+INSERT INTO `crossing` VALUES (1, '凌志西', NULL, 1);
 INSERT INTO `crossing` VALUES (2, '石头村', NULL, 0);
 INSERT INTO `crossing` VALUES (3, '石头油库', NULL, 0);
 
@@ -86,18 +86,20 @@ CREATE TABLE `instruction`  (
   `passTime` int(10) DEFAULT NULL COMMENT '机车通过时间（秒）',
   `valid` tinyint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT '是否有效，0为无效，1为有效',
   PRIMARY KEY (`InstructionId`) USING BTREE,
-  INDEX `crossingId`(`crossingId`) USING BTREE,
   INDEX `userId`(`userId`) USING BTREE,
+  INDEX `crossingId`(`crossingId`) USING BTREE,
   INDEX `locomotiveId`(`locomotiveId`) USING BTREE,
   CONSTRAINT `instruction_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `instruction_ibfk_2` FOREIGN KEY (`crossingId`) REFERENCES `crossing` (`crossingId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `instruction_ibfk_3` FOREIGN KEY (`locomotiveId`) REFERENCES `locomotive` (`locomotiveId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of instruction
 -- ----------------------------
 INSERT INTO `instruction` VALUES (1, 1, 1, 1, '允许通过', '2020-12-15 21:57:44', 10, 1);
+INSERT INTO `instruction` VALUES (2, 1, 2, 1, '允许通过', '2020-12-29 11:18:56', 12, 1);
+INSERT INTO `instruction` VALUES (4, 2, 3, 1, '允许通行', '2020-12-29 13:13:35', NULL, 1);
 
 -- ----------------------------
 -- Table structure for locomotive
@@ -180,13 +182,13 @@ CREATE TABLE `user`  (
   `lastLoginLength` int(20) UNSIGNED DEFAULT NULL COMMENT '最后登录时长（秒）',
   PRIMARY KEY (`userId`, `userAccount`) USING BTREE,
   INDEX `userId`(`userId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, '271880', NULL, '6B2E362E4B344941937D461553C7A578', '39322103-CD73-4D50-8CEB-C3E6746931EF', NULL, NULL);
-INSERT INTO `user` VALUES (5, '271881', NULL, '9D4A0F970CBE0429DECAB7468D5ADEDA', '20D49FFE-EFC7-4C27-A5AF-69D02B0CD9D0', NULL, NULL);
+INSERT INTO `user` VALUES (2, '271881', NULL, '9D4A0F970CBE0429DECAB7468D5ADEDA', '20D49FFE-EFC7-4C27-A5AF-69D02B0CD9D0', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for warning
@@ -196,7 +198,13 @@ CREATE TABLE `warning`  (
   `warningId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '警报id',
   `warningContent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '警报内容',
   `crossingId` int(10) UNSIGNED ZEROFILL DEFAULT NULL COMMENT '道口id(若为0则为RFID错误）',
+  `valid` tinyint(1) UNSIGNED ZEROFILL DEFAULT NULL COMMENT '有效性(默认0有效，修改后为1无效)',
   PRIMARY KEY (`warningId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of warning
+-- ----------------------------
+INSERT INTO `warning` VALUES (1, '栏杆故障！', 0000000003, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

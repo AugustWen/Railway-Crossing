@@ -2,6 +2,7 @@ package com.railwaycrossing.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.railwaycrossing.dao.UserDao;
 import com.railwaycrossing.entity.User;
@@ -16,6 +17,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Service("userService")
@@ -44,6 +46,8 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
             msg = JSONUtil.successJSON(token);
 
+
+
         }
 
         return msg;
@@ -61,6 +65,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
             // 注销
             currentUser.logout();
+
 
             msg = JSONUtil.successJSON();
 
@@ -198,6 +203,21 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
             return JSONUtil.successJSON();
         }
 
+    }
+
+    @Override
+    public void updateLoginTime(String userAccount) {
+        User user = new User();
+        user.setLastLoginTime(new Date());
+        baseMapper.update(user, new UpdateWrapper<User>().eq("userAccount",userAccount));
+    }
+
+    @Override
+    public void updateLoginLength(String userAccount) {
+        User user = baseMapper.getUserByUserAccount(userAccount);
+        Date logoutTime = new Date();
+        user.setLastLoginLength((int)(logoutTime.getTime() - user.getLastLoginTime().getTime()) / 1000);
+        baseMapper.update(user, new UpdateWrapper<User>().eq("userAccount",userAccount));
     }
 
 }

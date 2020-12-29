@@ -21,4 +21,8 @@ public interface UserService extends IService<User> {
 
     JSONObject updateUser(JSONObject message) throws UpdateException;
 
+    void updateLoginTime(String userAccount);
+
+    void updateLoginLength(String userAccount);
+
 }

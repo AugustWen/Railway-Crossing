@@ -46,7 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
             msg = JSONUtil.successJSON(token);
 
-
+            updateLoginTime(userAccount);
 
         }
 
@@ -69,6 +69,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
             msg = JSONUtil.successJSON();
 
+            updateLoginLength(message.getString("userAccount"));
         }
 
         return msg;
